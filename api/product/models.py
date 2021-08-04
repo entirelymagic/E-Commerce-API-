@@ -1,5 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from api.category.models import Category
+from django.core.validators import MaxValueValidator, MinValueValidator 
 
 from api.category.models import Category
 
