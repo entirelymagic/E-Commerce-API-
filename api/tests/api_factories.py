@@ -1,8 +1,10 @@
+from random import random
 import factory
 import pytz
 
 from api.category.models import Category
 from api.user.models import CustomUser
+from api.product.models import Product
 from faker import Factory, Faker
 
 
@@ -32,3 +34,19 @@ class UserFactory(factory.django.DjangoModelFactory):
     is_superuser = False
     last_login = factory.LazyAttribute(lambda x: faker.date_time(tzinfo=pytz.utc))
     date_joined = factory.LazyAttribute(lambda x: faker.date_time(tzinfo=pytz.utc))
+
+
+class ProducFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Product
+    
+    name = factory.LazyAttribute(lambda x: faker.name())
+    description = factory.LazyAttribute(lambda x: faker.text())
+    created_at = factory.LazyAttribute(lambda x: faker.date_time(tzinfo=pytz.utc))
+    updated_at = factory.LazyAttribute(lambda x: faker.date_time(tzinfo=pytz.utc))
+    price = factory.LazyAttribute(lambda x: faker.pyint())
+    stock = factory.LazyAttribute(lambda x: faker.pyint())
+    image = factory.LazyAttribute(lambda x: faker.url())
+    is_active = factory.LazyAttribute(lambda x: faker.pybool())
+    category = factory.SubFactory(CategoryFactory)
+    
