@@ -8,4 +8,4 @@ class CategorySerializer(serializers.ModelSerializer):
         # Model to be serialized
         model = Category
         # Fields to be serialized 
-        fields = ('name', 'description') 
+        fields = ('name', 'description')

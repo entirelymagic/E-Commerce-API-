@@ -1,14 +1,14 @@
 from django.urls import reverse
 from faker import Faker
-
 from rest_framework.test import APIClient, APITestCase
-from .api_factories import CategoryFactory, UserFactory
 
+from .api_factories import CategoryFactory, UserFactory
 
 # create a fake instance and client for testing
 fake = Faker()
 client = APIClient()
 Faker.seed(0)
+
 
 class CategoryTest(APITestCase):
     """Test category API endpoints
@@ -57,5 +57,3 @@ class CategoryTest(APITestCase):
         """Test DELETE request to category endpoint"""
         response = client.delete(self.category_url)
         self.assertEqual(response.status_code, 204)
-
-

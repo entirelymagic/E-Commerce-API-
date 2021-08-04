@@ -1,9 +1,8 @@
 from django.urls import reverse
 from faker import Faker
-
 from rest_framework.test import APIClient, APITestCase
-from .api_factories import ProducFactory, CategoryFactory
 
+from .api_factories import ProductFactory, CategoryFactory
 
 fake = Faker()
 client = APIClient()
@@ -12,7 +11,7 @@ Faker.seed(0)
 
 class ProductTest(APITestCase):
     def setUp(self):
-        self.product = ProducFactory.create()
+        self.product = ProductFactory.create()
         self.category = CategoryFactory.create()
 
     def test_create_product(self):
@@ -31,7 +30,6 @@ class ProductTest(APITestCase):
         self.assertEqual(response.data['description'], data['description'])
         self.assertEqual(response.data['price'], str(data['price']))
         self.assertEqual(response.data['stock'], data['stock'])
-
 
     def test_list_products(self):
         url = reverse('product-list')

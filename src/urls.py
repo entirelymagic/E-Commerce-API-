@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+
 from api.api_urls import router
 from api.user.views import signin, signout
 
@@ -24,4 +25,3 @@ urlpatterns = [
     path('login/', signin, name='login'),
     path('logout/<int:id>/', signout, name='signout'),
 ]
-
