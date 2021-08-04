@@ -43,7 +43,7 @@ A few of the things you can do with this app:
 
 ### Live Demo
 
-Live demo URL: 
+Live demo URL:
 
 <in development>
 
@@ -52,6 +52,5 @@ Live demo URL:
 <p>
   <img src = "https://i.imgur.com/<name>.png" width=700>
 </p>
-
 
 ## Feedback
