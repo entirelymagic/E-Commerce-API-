@@ -1,13 +1,12 @@
 import factory
 import pytz
-from faker import Factory, Faker
-
 from api.category.models import Category
 from api.order.models import Order
 from api.product.models import Product
 from api.user.models import CustomUser
-from .random_generator import random_string_generator
+from faker import Factory, Faker
 
+from .random_generator import random_string_generator
 
 faker = Factory.create()
 Faker.seed(0)
@@ -58,7 +57,7 @@ class OrderFactory(factory.django.DjangoModelFactory):
 
     Args:
         factory ([object]): [a factory object] representing an order
- 
+
     """
 
     class Meta:

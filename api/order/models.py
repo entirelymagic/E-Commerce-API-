@@ -1,11 +1,10 @@
+from api.product.models import Product
+from api.user.models import CustomUser
 from django.core.validators import MinValueValidator
 from django.db import models
 
-from api.product.models import Product
-from api.user.models import CustomUser
-
-
 # Create your models here.
+
 
 class Order(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -18,3 +17,5 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.product_name}"
+
+    ["asda", "asdada", "asdasda"]
