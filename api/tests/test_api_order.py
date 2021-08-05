@@ -1,11 +1,10 @@
 from django.urls import reverse
 from faker import Faker
-
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
+from .api_factories import CategoryFactory, OrderFactory, ProductFactory, UserFactory
 from .random_generator import random_string_generator
-from .api_factories import ProductFactory, CategoryFactory, OrderFactory, UserFactory
 
 fake = Faker()
 client = APIClient()
@@ -29,7 +28,7 @@ class OrderTest(APITestCase):
         """
         Test to get all orders.
         """
-        url = reverse('order-list')
+        url = reverse("order-list")
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
@@ -37,7 +36,7 @@ class OrderTest(APITestCase):
         """
         Test to get one order.
         """
-        url = reverse('order-detail', kwargs={'pk': self.order.id})
+        url = reverse("order-detail", kwargs={"pk": self.order.id})
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
@@ -45,41 +44,39 @@ class OrderTest(APITestCase):
         """
         Test to create order.
         """
-        url = reverse('order-list')
+        url = reverse("order-list")
         data = {
-            'user': self.user.pk,
-            'product_names': self.produc1.name + ' ' +  self.produc2.name,
-            'total_products': 2,
-            'total_amount': self.produc1.price + self.produc2.price,
-            'transaction_id': random_string_generator(size=6)
-            
+            "user": self.user.pk,
+            "product_names": self.produc1.name + " " + self.produc2.name,
+            "total_products": 2,
+            "total_amount": self.produc1.price + self.produc2.price,
+            "transaction_id": random_string_generator(size=6),
         }
-        response = client.post(url, data, format='json')
+        response = client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_update_order(self):
         """
         Test to update order.
         """
-        url = reverse('order-detail', kwargs={'pk': self.order.id})
+        url = reverse("order-detail", kwargs={"pk": self.order.id})
         data = {
-            'user': self.user.pk,
-            'product_names': self.produc1.name + ' ' +  self.produc3.name,
-            'total_products': 2,
-            'total_amount': self.produc1.price + self.produc2.price,
-            'transaction_id': random_string_generator(size=10)
+            "user": self.user.pk,
+            "product_names": self.produc1.name + " " + self.produc3.name,
+            "total_products": 2,
+            "total_amount": self.produc1.price + self.produc2.price,
+            "transaction_id": random_string_generator(size=10),
         }
-        response = client.put(url, data, format='json')
+        response = client.put(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['product_names'], data['product_names'])
-        self.assertEqual(response.data['total_products'], data['total_products'])
-        self.assertEqual(response.data['total_amount'], data['total_amount'])
-        self.assertEqual(response.data['transaction_id'], data['transaction_id'])
-        
+        self.assertEqual(response.data["product_names"], data["product_names"])
+        self.assertEqual(response.data["total_products"], data["total_products"])
+        self.assertEqual(response.data["total_amount"], data["total_amount"])
+        self.assertEqual(response.data["transaction_id"], data["transaction_id"])
 
     def test_delete_order(self):
         """
         Test to delete order.
         """
-        url = reverse('order-detail', kwargs={'pk': self.order.id})
+        url = reverse("order-detail", kwargs={"pk": self.order.id})
         response = client.delete(url)

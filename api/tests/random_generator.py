@@ -5,9 +5,9 @@ generated_so_far: list = []
 
 
 def random_string_generator(
-        size: int = 10,
-        chars: list = string.ascii_lowercase + string.digits,
-        reset: bool = True
+    size: int = 10,
+    chars: list = string.ascii_lowercase + string.digits,
+    reset: bool = True,
 ) -> string:
     """[Create a string that as long as the reset is 0 will not generate the same value]
 
@@ -26,7 +26,7 @@ def random_string_generator(
         generated_so_far.clear(),
 
     # generation of the new object
-    new_generated_object = ''.join(random.choice(chars) for _ in range(size))
+    new_generated_object = "".join(random.choice(chars) for _ in range(size))
 
     # validate the generated object to make sure it is not a duplicate
     if new_generated_object not in generated_so_far:
