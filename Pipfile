@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "==3.12.4"
+python-decouple = "==3.4"
+django-cors-headers = "==3.7.0"
+factory-boy = "==3.2.0"
+Django = "==3.2.6"
+Faker = "==8.10.3"
+Pillow = "==8.3.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
